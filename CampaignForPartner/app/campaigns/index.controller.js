@@ -164,6 +164,7 @@
                 $scope.partner_id=user._id;
             });
             // c
+
             $http.get('/getcampaign')
                 .success(function (res) {
                     $scope.str_login = res;
@@ -200,6 +201,10 @@
                             $location.path('/campaigns');
                         }else {
                             console.log("Time Error");
+                            $scope.isTimeError=function(){
+                                return true;
+
+                            }
                         }
 
                     });
