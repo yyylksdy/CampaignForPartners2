@@ -1,7 +1,9 @@
 /**
  * Created by YoYo on 5/31/17.
  */
+/**
 
+ */
 (function () {
 //    'use strict';
 
@@ -134,16 +136,15 @@
             $http.get('/getcampaign')
                 .success(function (res) {
                     $scope.str_login = res;
-                    //  console.log($scope.str_login[0].title);
-                    // var username=myService.get();
-                    // //  console.log(username);
-                    // for(var i=0;i<$scope.str_login.length;i++){
-                    //     //   console.log($scope.str_login.length);
-                    //     if($scope.str_login[i].username!==username){
-                    //         $scope.str_login.splice(i,1);
-                    //         i=i-1;
-                    //     }
-                    // }
+
+                    var current = new Date().getTime();
+
+                    var exp = new Date($scope.str_login[index].starttime).getTime()+$scope.str_login[index].duration*1000;
+
+                    if(current>exp) {
+                        document.getElementById("unactive").innerHTML = "not active campaign now";
+                        $scope.str_login[index].star='false';
+                    }
                     $scope.title=$scope.str_login[index].title;
                     $scope.pname=$scope.str_login[index].name;
                     $scope.ad_content=$scope.str_login[index].ad_content;
@@ -155,7 +156,7 @@
 
         }])
         .controller('SendCtrl',['$scope','$http','$rootScope', '$location','myService2','UserService','myService','myService3',function ($scope,$http,$rootScope,$location,myService2,UserService,myService,myService3) {
-            //   console.log('message send ctrl');
+
              UserService.GetCurrent().then(function (user) {
                  // vm.user = user;
             //     //    console.log(user);
@@ -192,7 +193,7 @@
                 var username=myService.get();
                 var firstname=myService3.get();
            //onsole.log($scope.sdate+$scope.ssec);
-                var sendmsg={name:$scope.pname,partner_id:makeid(), title:$scope.ttl,starttime:$scope.sdate,duration:$scope.sec,star:'false',ad_content:$scope.ad_content};
+                var sendmsg={name:$scope.pname,partner_id:makeid(), title:$scope.ttl,starttime:$scope.sdate,duration:$scope.sec,star:'true',ad_content:$scope.ad_content};
                 // console.log(sendmsg);
                 $scope.str_login.push(sendmsg);
                   console.log($scope.str_login);
@@ -200,7 +201,7 @@
                 // $scope.str_login.push(receivemsg);
                 console.log($scope.str_login);
                 var flag=0;
-                $http.post('/addcampaign', sendmsg)
+                $http.post('/ad', sendmsg)
                     .success(function (resp) {
                         if(resp === "successful"){
                             flag=1;
@@ -270,15 +271,15 @@
                                     .success(function (res) {
                                             str_login = res;
                                             //    console.log(str_login);
-                                            var username = myService.get();
-                                            //  console.log(username);
-                                            for (var i = 0; i < str_login.length; i++) {
-                                                //   console.log($scope.str_login.length);
-                                                if (str_login[i].username !== username) {
-                                                    str_login.splice(i, 1);
-                                                    i = i - 1;
-                                                }
-                                            }
+                                            // var username = myService.get();
+                                            // //  console.log(username);
+                                            // for (var i = 0; i < str_login.length; i++) {
+                                            //     //   console.log($scope.str_login.length);
+                                            //     if (str_login[i].username !== username) {
+                                            //         str_login.splice(i, 1);
+                                            //         i = i - 1;
+                                            //     }
+                                            // }
                                             for(var j=0;j<str_login.length;j++){
                                                 if(str_login[j].star=='true'){
                                                     //    star_group[j].style.color="#21568b";
