@@ -1,0 +1,5 @@
+{
+  "connectionString": "mongodb://localhost:27017/campaignforpartners",
+  "apiUrl": "http://localhost:3001/api",
+  "secret": "SECRET"
+}

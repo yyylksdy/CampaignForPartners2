@@ -1,0 +1,24 @@
+<h1>Capaigns</h1>
+<div id="error"></div>
+<div class="row" >
+    <div class="col-md-12">
+        <table id="myTable" class= "table table-hover">
+            <tr>
+                <th>Title</th>
+                <th>PartnerID</th>
+                <th>PartnerName</th>
+                <th>Operations</th>
+            </tr>
+            <tr ng-repeat="str_login2 in str_login">
+                <td>{{str_login2.title}}</td>
+                <td>{{str_login2.partner_id}}</td>
+                <td>{{str_login2.name}}</td>
+                <td><button ng-click="view($index)" class="btn btn-primary btn-sm">View</button><button class="btn btn-info btn-sm" ng-click="delete(str_login2._id)">Delete</button><div ng-init="rating = star.rating + 1"></div>
+                    <div class="make-star" make-star="star" index="$index" rating-value="rating" data-max="1" on-rating-selected="rateFunction(rating,str_login2._id)"></div></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-md-3"id="sendBtn"><input type="button" value="Add a Campaign" ng-click="sendMsg()" class="btn btn-success btn-block btn-md"></div>
+
+</div>
