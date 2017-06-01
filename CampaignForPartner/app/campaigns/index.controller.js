@@ -1,9 +1,7 @@
 /**
  * Created by YoYo on 5/31/17.
  */
-/**
- * Created by YoYo on 3/9/17.
- */
+
 (function () {
 //    'use strict';
 
@@ -158,13 +156,22 @@
         }])
         .controller('SendCtrl',['$scope','$http','$rootScope', '$location','myService2','UserService','myService','myService3',function ($scope,$http,$rootScope,$location,myService2,UserService,myService,myService3) {
             //   console.log('message send ctrl');
-            UserService.GetCurrent().then(function (user) {
-                // vm.user = user;
-                //    console.log(user);
-                $scope.partner_id=user._id;
-            });
+             UserService.GetCurrent().then(function (user) {
+                 // vm.user = user;
+            //     //    console.log(user);
+                 $scope.partner_id=user._id;
+             });
             // c
+            function makeid()
+            {
+                var text = "";
+                var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
+                for( var i=0; i < 5; i++ )
+                    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+                return text;
+            }
             $http.get('/getcampaign')
                 .success(function (res) {
                     $scope.str_login = res;
@@ -185,7 +192,7 @@
                 var username=myService.get();
                 var firstname=myService3.get();
            //onsole.log($scope.sdate+$scope.ssec);
-                var sendmsg={name:$scope.pname,partner_id:$scope.partner_id, title:$scope.ttl,starttime:$scope.sdate,duration:$scope.sec,star:'false',ad_content:$scope.ad_content};
+                var sendmsg={name:$scope.pname,partner_id:makeid(), title:$scope.ttl,starttime:$scope.sdate,duration:$scope.sec,star:'false',ad_content:$scope.ad_content};
                 // console.log(sendmsg);
                 $scope.str_login.push(sendmsg);
                   console.log($scope.str_login);
