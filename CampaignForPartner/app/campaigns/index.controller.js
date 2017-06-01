@@ -309,15 +309,15 @@
                                             .success(function (res) {
                                                 str_login = res;
                                                 //    console.log(str_login);
-                                                var username = myService.get();
-                                                //  console.log(username);
-                                                for (var i = 0; i < str_login.length; i++) {
-                                                    //   console.log($scope.str_login.length);
-                                                    if (str_login[i].username !== username) {
-                                                        str_login.splice(i, 1);
-                                                        i = i - 1;
-                                                    }
-                                                }
+                                                // var username = myService.get();
+                                                // //  console.log(username);
+                                                // for (var i = 0; i < str_login.length; i++) {
+                                                //     //   console.log($scope.str_login.length);
+                                                //     if (str_login[i].username !== username) {
+                                                //         str_login.splice(i, 1);
+                                                //         i = i - 1;
+                                                //     }
+                                                // }
                                                 var objid=myService4.get();
                                                 //   console.log(objid);
                                                 if($(star_group[id]).css("color")=="rgb(59, 185, 255)"){
