@@ -75,7 +75,7 @@ app.post('/addcampaign', function (req, res) {
           //  exp = parseInt(exp) + parseInt(req.body.duration)*1000;
             console.log(req.body.duration*1000);
             console.log(current);
-           if(current<exp){
+           if(current>exp){
                res.send("Time Error happened");
            }else{
                db.collection("adcampaign").insert(req.body, function (err, result) {
