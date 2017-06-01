@@ -81,6 +81,7 @@
     </div>
     <div class="col-md-3" id="sendBtn">
         <input  type="button" value="Add a Campaign"  ng-click="SuccessSend()" >
+        <span ng-if="isTimeError()" id="timeError">Time Expired</span>
     </div>
 </div>
 
